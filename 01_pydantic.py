@@ -1,31 +1,45 @@
-def insert_patient_data(name:str, age:int):
+from pydantic import BaseModel
+from typing import List, Dict, Optional
 
-  if type(name) == str and type(age) == int:
+class Patient(BaseModel):
 
-    if age < 0 :
-      raise ValueError('Age cannot be nagative')
-    
-    else:
-
-      print(name)
-      print(age)
-      print('inserted into the DB....')
-
-  else:
-    raise TypeError('incorrect data type..')
-  
-
-def update_patient_data(name:str, age:int):
-
-  if type(name) == str and type(age) == int:
-
-    print(name)
-    print(age)
-    print('updated into the DB....')
-
-  else:
-    raise TypeError('incorrect data type..')
+  name:str
+  age:int
+  weight:float
+  isMarried:bool = False
+  allergies:Optional[List[str]] = None
+  contact_details:Dict[str, str]
 
 
 
-insert_patient_data("sanoj", 30)
+def insert_patient_data(patient: Patient):
+
+  print(patient.name)
+  print(patient.age)
+  print(patient.weight)
+  print(patient.isMarried)
+  print(patient.allergies)
+  print(patient.contact_details)
+  print('inserted into the DB....')
+
+
+def update_patient_data(patient: Patient):
+
+  print(patient.name)
+  print(patient.age)
+  print(patient.weight)
+  print(patient.isMarried)
+  print(patient.allergies)
+  print(patient.contact_details)
+  print('updated into the DB....')
+
+
+patient_info = {'name':'sanoj', 'age':30, 'weight': 75.2, 'isMarried':True,'allergies':['pollen','dust'],  'contact_details':{
+  'email':'abc7@gmail.com', 'phone':'100'
+}}
+
+
+patient1 = Patient(**patient_info)
+
+# insert_patient_data(patient1)
+update_patient_data(patient1)

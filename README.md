@@ -1,2 +1,2 @@
 # py_pydantic
-Codes related with the pydantic library
+Codes related to the pydantic library
